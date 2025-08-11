@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Verdict?  @default(user)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //Relationship 
+  store   Store?   @relation("OwnerOfstore")
+  Address Address? @relation("userAddress")
+  rating  Rating?  @relation("RatingByuserTostore")
+}
+
+enum Verdict {
+  user
+  Owner
+  Administrator
+}
+
+model Address {
+  id      Int    @id @default(autoincrement())
+  city    String
+  streat  String
+  pincode String
+  State   String
+  country String
+  userId   String ?@unique
+  storeId  Int    ?@unique
+  user    User?  @relation("userAddress" , fields: [userId] , references: [id])
+  store   Store? @relation("storeAddress" , fields: [storeId] , references: [id])
+}
+
+model Store {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  Rating    Float
+  userId    String   @unique
+
+  // relation 
+  owner     User     @relation("OwnerOfstore", fields: [userId], references: [id])
+  Address   Address? @relation("storeAddress")
+  allRating Rating?  @relation("RatingToStore")
+}
+
+model Rating {
+  id      Int    @id @default(autoincrement())
+  userId  String @unique
+  storeId Int    @unique
+  Rating  Int
+  desc    String
+  user    User   @relation("RatingByuserTostore", references: [id], fields: [userId])
+  store   Store  @relation("RatingToStore", references: [id], fields: [storeId])
+}
