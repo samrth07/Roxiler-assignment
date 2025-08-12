@@ -25,9 +25,9 @@ model User {
   updatedAt DateTime @updatedAt
 
   //Relationship 
-  store   Store?   @relation("OwnerOfstore")
+  store   Store[]  @relation("OwnerOfstore")
   Address Address? @relation("userAddress")
-  rating  Rating?  @relation("RatingByuserTostore")
+  rating  Rating[] @relation("RatingByuserTostore")
 }
 
 enum Verdict {
@@ -50,24 +50,24 @@ model Address {
 }
 
 model Store {
-  id     Int    @id @default(autoincrement())
-  name   String
-  email  String @unique
-  Rating Float
-  userId String @unique
+  id      Int    @id @default(autoincrement())
+  name    String
+  email   String @unique
+  Rating  Float  @default(0)
+  OwnerId String
 
   // relation 
-  owner     User     @relation("OwnerOfstore", fields: [userId], references: [id])
+  owner     User     @relation("OwnerOfstore", fields: [OwnerId], references: [id])
   Address   Address? @relation("storeAddress")
-  allRating Rating?  @relation("RatingToStore")
+  allRating Rating[] @relation("RatingToStore")
 }
 
 model Rating {
-  id      Int    @id @default(autoincrement())
-  userId  String @unique
-  storeId Int    @unique
+  id      Int     @id @default(autoincrement())
+  userId  String
+  storeId Int
   Rating  Int
-  desc    String
-  user    User   @relation("RatingByuserTostore", references: [id], fields: [userId])
-  store   Store  @relation("RatingToStore", references: [id], fields: [storeId])
+  desc    String?
+  user    User    @relation("RatingByuserTostore", references: [id], fields: [userId])
+  store   Store   @relation("RatingToStore", references: [id], fields: [storeId])
 }

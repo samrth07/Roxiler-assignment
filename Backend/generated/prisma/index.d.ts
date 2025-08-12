@@ -1168,6 +1168,76 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    store: number
+    rating: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    store?: boolean | UserCountOutputTypeCountStoreArgs
+    rating?: boolean | UserCountOutputTypeCountRatingArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStoreArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoreWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRatingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RatingWhereInput
+  }
+
+
+  /**
+   * Count Type StoreCountOutputType
+   */
+
+  export type StoreCountOutputType = {
+    allRating: number
+  }
+
+  export type StoreCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    allRating?: boolean | StoreCountOutputTypeCountAllRatingArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StoreCountOutputType without action
+   */
+  export type StoreCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoreCountOutputType
+     */
+    select?: StoreCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StoreCountOutputType without action
+   */
+  export type StoreCountOutputTypeCountAllRatingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RatingWhereInput
+  }
+
 
   /**
    * Models
@@ -1356,6 +1426,7 @@ export namespace Prisma {
     store?: boolean | User$storeArgs<ExtArgs>
     Address?: boolean | User$AddressArgs<ExtArgs>
     rating?: boolean | User$ratingArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1393,6 +1464,7 @@ export namespace Prisma {
     store?: boolean | User$storeArgs<ExtArgs>
     Address?: boolean | User$AddressArgs<ExtArgs>
     rating?: boolean | User$ratingArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1400,9 +1472,9 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      store: Prisma.$StorePayload<ExtArgs> | null
+      store: Prisma.$StorePayload<ExtArgs>[]
       Address: Prisma.$AddressPayload<ExtArgs> | null
-      rating: Prisma.$RatingPayload<ExtArgs> | null
+      rating: Prisma.$RatingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1806,9 +1878,9 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    store<T extends User$storeArgs<ExtArgs> = {}>(args?: Subset<T, User$storeArgs<ExtArgs>>): Prisma__StoreClient<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    store<T extends User$storeArgs<ExtArgs> = {}>(args?: Subset<T, User$storeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Address<T extends User$AddressArgs<ExtArgs> = {}>(args?: Subset<T, User$AddressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    rating<T extends User$ratingArgs<ExtArgs> = {}>(args?: Subset<T, User$ratingArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    rating<T extends User$ratingArgs<ExtArgs> = {}>(args?: Subset<T, User$ratingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2249,6 +2321,11 @@ export namespace Prisma {
      */
     include?: StoreInclude<ExtArgs> | null
     where?: StoreWhereInput
+    orderBy?: StoreOrderByWithRelationInput | StoreOrderByWithRelationInput[]
+    cursor?: StoreWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StoreScalarFieldEnum | StoreScalarFieldEnum[]
   }
 
   /**
@@ -2287,6 +2364,11 @@ export namespace Prisma {
      */
     include?: RatingInclude<ExtArgs> | null
     where?: RatingWhereInput
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    cursor?: RatingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
   }
 
   /**
@@ -3516,7 +3598,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     Rating: number | null
-    userId: string | null
+    OwnerId: string | null
   }
 
   export type StoreMaxAggregateOutputType = {
@@ -3524,7 +3606,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     Rating: number | null
-    userId: string | null
+    OwnerId: string | null
   }
 
   export type StoreCountAggregateOutputType = {
@@ -3532,7 +3614,7 @@ export namespace Prisma {
     name: number
     email: number
     Rating: number
-    userId: number
+    OwnerId: number
     _all: number
   }
 
@@ -3552,7 +3634,7 @@ export namespace Prisma {
     name?: true
     email?: true
     Rating?: true
-    userId?: true
+    OwnerId?: true
   }
 
   export type StoreMaxAggregateInputType = {
@@ -3560,7 +3642,7 @@ export namespace Prisma {
     name?: true
     email?: true
     Rating?: true
-    userId?: true
+    OwnerId?: true
   }
 
   export type StoreCountAggregateInputType = {
@@ -3568,7 +3650,7 @@ export namespace Prisma {
     name?: true
     email?: true
     Rating?: true
-    userId?: true
+    OwnerId?: true
     _all?: true
   }
 
@@ -3663,7 +3745,7 @@ export namespace Prisma {
     name: string
     email: string
     Rating: number
-    userId: string
+    OwnerId: string
     _count: StoreCountAggregateOutputType | null
     _avg: StoreAvgAggregateOutputType | null
     _sum: StoreSumAggregateOutputType | null
@@ -3690,10 +3772,11 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     Rating?: boolean
-    userId?: boolean
+    OwnerId?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
     Address?: boolean | Store$AddressArgs<ExtArgs>
     allRating?: boolean | Store$allRatingArgs<ExtArgs>
+    _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
   export type StoreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3701,7 +3784,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     Rating?: boolean
-    userId?: boolean
+    OwnerId?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
@@ -3710,7 +3793,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     Rating?: boolean
-    userId?: boolean
+    OwnerId?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["store"]>
 
@@ -3719,14 +3802,15 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     Rating?: boolean
-    userId?: boolean
+    OwnerId?: boolean
   }
 
-  export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "Rating" | "userId", ExtArgs["result"]["store"]>
+  export type StoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "Rating" | "OwnerId", ExtArgs["result"]["store"]>
   export type StoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | UserDefaultArgs<ExtArgs>
     Address?: boolean | Store$AddressArgs<ExtArgs>
     allRating?: boolean | Store$allRatingArgs<ExtArgs>
+    _count?: boolean | StoreCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | UserDefaultArgs<ExtArgs>
@@ -3740,14 +3824,14 @@ export namespace Prisma {
     objects: {
       owner: Prisma.$UserPayload<ExtArgs>
       Address: Prisma.$AddressPayload<ExtArgs> | null
-      allRating: Prisma.$RatingPayload<ExtArgs> | null
+      allRating: Prisma.$RatingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       email: string
       Rating: number
-      userId: string
+      OwnerId: string
     }, ExtArgs["result"]["store"]>
     composites: {}
   }
@@ -4144,7 +4228,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Address<T extends Store$AddressArgs<ExtArgs> = {}>(args?: Subset<T, Store$AddressArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    allRating<T extends Store$allRatingArgs<ExtArgs> = {}>(args?: Subset<T, Store$allRatingArgs<ExtArgs>>): Prisma__RatingClient<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    allRating<T extends Store$allRatingArgs<ExtArgs> = {}>(args?: Subset<T, Store$allRatingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4178,7 +4262,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Store", 'String'>
     readonly email: FieldRef<"Store", 'String'>
     readonly Rating: FieldRef<"Store", 'Float'>
-    readonly userId: FieldRef<"Store", 'String'>
+    readonly OwnerId: FieldRef<"Store", 'String'>
   }
     
 
@@ -4610,6 +4694,11 @@ export namespace Prisma {
      */
     include?: RatingInclude<ExtArgs> | null
     where?: RatingWhereInput
+    orderBy?: RatingOrderByWithRelationInput | RatingOrderByWithRelationInput[]
+    cursor?: RatingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RatingScalarFieldEnum | RatingScalarFieldEnum[]
   }
 
   /**
@@ -4809,7 +4898,7 @@ export namespace Prisma {
     userId: string
     storeId: number
     Rating: number
-    desc: string
+    desc: string | null
     _count: RatingCountAggregateOutputType | null
     _avg: RatingAvgAggregateOutputType | null
     _sum: RatingSumAggregateOutputType | null
@@ -4894,7 +4983,7 @@ export namespace Prisma {
       userId: string
       storeId: number
       Rating: number
-      desc: string
+      desc: string | null
     }, ExtArgs["result"]["rating"]>
     composites: {}
   }
@@ -5785,7 +5874,7 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     Rating: 'Rating',
-    userId: 'userId'
+    OwnerId: 'OwnerId'
   };
 
   export type StoreScalarFieldEnum = (typeof StoreScalarFieldEnum)[keyof typeof StoreScalarFieldEnum]
@@ -5915,9 +6004,9 @@ export namespace Prisma {
     role?: EnumVerdictNullableFilter<"User"> | $Enums.Verdict | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    store?: XOR<StoreNullableScalarRelationFilter, StoreWhereInput> | null
+    store?: StoreListRelationFilter
     Address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
-    rating?: XOR<RatingNullableScalarRelationFilter, RatingWhereInput> | null
+    rating?: RatingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5928,9 +6017,9 @@ export namespace Prisma {
     role?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    store?: StoreOrderByWithRelationInput
+    store?: StoreOrderByRelationAggregateInput
     Address?: AddressOrderByWithRelationInput
-    rating?: RatingOrderByWithRelationInput
+    rating?: RatingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -5944,9 +6033,9 @@ export namespace Prisma {
     role?: EnumVerdictNullableFilter<"User"> | $Enums.Verdict | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    store?: XOR<StoreNullableScalarRelationFilter, StoreWhereInput> | null
+    store?: StoreListRelationFilter
     Address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
-    rating?: XOR<RatingNullableScalarRelationFilter, RatingWhereInput> | null
+    rating?: RatingListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -6058,10 +6147,10 @@ export namespace Prisma {
     name?: StringFilter<"Store"> | string
     email?: StringFilter<"Store"> | string
     Rating?: FloatFilter<"Store"> | number
-    userId?: StringFilter<"Store"> | string
+    OwnerId?: StringFilter<"Store"> | string
     owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     Address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
-    allRating?: XOR<RatingNullableScalarRelationFilter, RatingWhereInput> | null
+    allRating?: RatingListRelationFilter
   }
 
   export type StoreOrderByWithRelationInput = {
@@ -6069,32 +6158,32 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     Rating?: SortOrder
-    userId?: SortOrder
+    OwnerId?: SortOrder
     owner?: UserOrderByWithRelationInput
     Address?: AddressOrderByWithRelationInput
-    allRating?: RatingOrderByWithRelationInput
+    allRating?: RatingOrderByRelationAggregateInput
   }
 
   export type StoreWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     email?: string
-    userId?: string
     AND?: StoreWhereInput | StoreWhereInput[]
     OR?: StoreWhereInput[]
     NOT?: StoreWhereInput | StoreWhereInput[]
     name?: StringFilter<"Store"> | string
     Rating?: FloatFilter<"Store"> | number
+    OwnerId?: StringFilter<"Store"> | string
     owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     Address?: XOR<AddressNullableScalarRelationFilter, AddressWhereInput> | null
-    allRating?: XOR<RatingNullableScalarRelationFilter, RatingWhereInput> | null
-  }, "id" | "email" | "userId">
+    allRating?: RatingListRelationFilter
+  }, "id" | "email">
 
   export type StoreOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     Rating?: SortOrder
-    userId?: SortOrder
+    OwnerId?: SortOrder
     _count?: StoreCountOrderByAggregateInput
     _avg?: StoreAvgOrderByAggregateInput
     _max?: StoreMaxOrderByAggregateInput
@@ -6110,7 +6199,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Store"> | string
     email?: StringWithAggregatesFilter<"Store"> | string
     Rating?: FloatWithAggregatesFilter<"Store"> | number
-    userId?: StringWithAggregatesFilter<"Store"> | string
+    OwnerId?: StringWithAggregatesFilter<"Store"> | string
   }
 
   export type RatingWhereInput = {
@@ -6121,7 +6210,7 @@ export namespace Prisma {
     userId?: StringFilter<"Rating"> | string
     storeId?: IntFilter<"Rating"> | number
     Rating?: IntFilter<"Rating"> | number
-    desc?: StringFilter<"Rating"> | string
+    desc?: StringNullableFilter<"Rating"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
   }
@@ -6131,30 +6220,30 @@ export namespace Prisma {
     userId?: SortOrder
     storeId?: SortOrder
     Rating?: SortOrder
-    desc?: SortOrder
+    desc?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     store?: StoreOrderByWithRelationInput
   }
 
   export type RatingWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    userId?: string
-    storeId?: number
     AND?: RatingWhereInput | RatingWhereInput[]
     OR?: RatingWhereInput[]
     NOT?: RatingWhereInput | RatingWhereInput[]
+    userId?: StringFilter<"Rating"> | string
+    storeId?: IntFilter<"Rating"> | number
     Rating?: IntFilter<"Rating"> | number
-    desc?: StringFilter<"Rating"> | string
+    desc?: StringNullableFilter<"Rating"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     store?: XOR<StoreScalarRelationFilter, StoreWhereInput>
-  }, "id" | "userId" | "storeId">
+  }, "id">
 
   export type RatingOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     storeId?: SortOrder
     Rating?: SortOrder
-    desc?: SortOrder
+    desc?: SortOrderInput | SortOrder
     _count?: RatingCountOrderByAggregateInput
     _avg?: RatingAvgOrderByAggregateInput
     _max?: RatingMaxOrderByAggregateInput
@@ -6170,7 +6259,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"Rating"> | string
     storeId?: IntWithAggregatesFilter<"Rating"> | number
     Rating?: IntWithAggregatesFilter<"Rating"> | number
-    desc?: StringWithAggregatesFilter<"Rating"> | string
+    desc?: StringNullableWithAggregatesFilter<"Rating"> | string | null
   }
 
   export type UserCreateInput = {
@@ -6181,9 +6270,9 @@ export namespace Prisma {
     role?: $Enums.Verdict | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    store?: StoreCreateNestedOneWithoutOwnerInput
+    store?: StoreCreateNestedManyWithoutOwnerInput
     Address?: AddressCreateNestedOneWithoutUserInput
-    rating?: RatingCreateNestedOneWithoutUserInput
+    rating?: RatingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -6194,9 +6283,9 @@ export namespace Prisma {
     role?: $Enums.Verdict | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    store?: StoreUncheckedCreateNestedOneWithoutOwnerInput
+    store?: StoreUncheckedCreateNestedManyWithoutOwnerInput
     Address?: AddressUncheckedCreateNestedOneWithoutUserInput
-    rating?: RatingUncheckedCreateNestedOneWithoutUserInput
+    rating?: RatingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -6207,9 +6296,9 @@ export namespace Prisma {
     role?: NullableEnumVerdictFieldUpdateOperationsInput | $Enums.Verdict | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneWithoutOwnerNestedInput
+    store?: StoreUpdateManyWithoutOwnerNestedInput
     Address?: AddressUpdateOneWithoutUserNestedInput
-    rating?: RatingUpdateOneWithoutUserNestedInput
+    rating?: RatingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6220,9 +6309,9 @@ export namespace Prisma {
     role?: NullableEnumVerdictFieldUpdateOperationsInput | $Enums.Verdict | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUncheckedUpdateOneWithoutOwnerNestedInput
+    store?: StoreUncheckedUpdateManyWithoutOwnerNestedInput
     Address?: AddressUncheckedUpdateOneWithoutUserNestedInput
-    rating?: RatingUncheckedUpdateOneWithoutUserNestedInput
+    rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -6330,20 +6419,20 @@ export namespace Prisma {
   export type StoreCreateInput = {
     name: string
     email: string
-    Rating: number
+    Rating?: number
     owner: UserCreateNestedOneWithoutStoreInput
     Address?: AddressCreateNestedOneWithoutStoreInput
-    allRating?: RatingCreateNestedOneWithoutStoreInput
+    allRating?: RatingCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUncheckedCreateInput = {
     id?: number
     name: string
     email: string
-    Rating: number
-    userId: string
+    Rating?: number
+    OwnerId: string
     Address?: AddressUncheckedCreateNestedOneWithoutStoreInput
-    allRating?: RatingUncheckedCreateNestedOneWithoutStoreInput
+    allRating?: RatingUncheckedCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUpdateInput = {
@@ -6352,7 +6441,7 @@ export namespace Prisma {
     Rating?: FloatFieldUpdateOperationsInput | number
     owner?: UserUpdateOneRequiredWithoutStoreNestedInput
     Address?: AddressUpdateOneWithoutStoreNestedInput
-    allRating?: RatingUpdateOneWithoutStoreNestedInput
+    allRating?: RatingUpdateManyWithoutStoreNestedInput
   }
 
   export type StoreUncheckedUpdateInput = {
@@ -6360,17 +6449,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     Rating?: FloatFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    OwnerId?: StringFieldUpdateOperationsInput | string
     Address?: AddressUncheckedUpdateOneWithoutStoreNestedInput
-    allRating?: RatingUncheckedUpdateOneWithoutStoreNestedInput
+    allRating?: RatingUncheckedUpdateManyWithoutStoreNestedInput
   }
 
   export type StoreCreateManyInput = {
     id?: number
     name: string
     email: string
-    Rating: number
-    userId: string
+    Rating?: number
+    OwnerId: string
   }
 
   export type StoreUpdateManyMutationInput = {
@@ -6384,12 +6473,12 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     Rating?: FloatFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    OwnerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type RatingCreateInput = {
     Rating: number
-    desc: string
+    desc?: string | null
     user: UserCreateNestedOneWithoutRatingInput
     store: StoreCreateNestedOneWithoutAllRatingInput
   }
@@ -6399,12 +6488,12 @@ export namespace Prisma {
     userId: string
     storeId: number
     Rating: number
-    desc: string
+    desc?: string | null
   }
 
   export type RatingUpdateInput = {
     Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutRatingNestedInput
     store?: StoreUpdateOneRequiredWithoutAllRatingNestedInput
   }
@@ -6414,7 +6503,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     storeId?: IntFieldUpdateOperationsInput | number
     Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RatingCreateManyInput = {
@@ -6422,12 +6511,12 @@ export namespace Prisma {
     userId: string
     storeId: number
     Rating: number
-    desc: string
+    desc?: string | null
   }
 
   export type RatingUpdateManyMutationInput = {
     Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RatingUncheckedUpdateManyInput = {
@@ -6435,7 +6524,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     storeId?: IntFieldUpdateOperationsInput | number
     Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6471,9 +6560,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type StoreNullableScalarRelationFilter = {
-    is?: StoreWhereInput | null
-    isNot?: StoreWhereInput | null
+  export type StoreListRelationFilter = {
+    every?: StoreWhereInput
+    some?: StoreWhereInput
+    none?: StoreWhereInput
   }
 
   export type AddressNullableScalarRelationFilter = {
@@ -6481,14 +6571,23 @@ export namespace Prisma {
     isNot?: AddressWhereInput | null
   }
 
-  export type RatingNullableScalarRelationFilter = {
-    is?: RatingWhereInput | null
-    isNot?: RatingWhereInput | null
+  export type RatingListRelationFilter = {
+    every?: RatingWhereInput
+    some?: RatingWhereInput
+    none?: RatingWhereInput
   }
 
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type StoreOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RatingOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -6605,6 +6704,11 @@ export namespace Prisma {
     isNot?: UserWhereInput | null
   }
 
+  export type StoreNullableScalarRelationFilter = {
+    is?: StoreWhereInput | null
+    isNot?: StoreWhereInput | null
+  }
+
   export type AddressCountOrderByAggregateInput = {
     id?: SortOrder
     city?: SortOrder
@@ -6719,7 +6823,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     Rating?: SortOrder
-    userId?: SortOrder
+    OwnerId?: SortOrder
   }
 
   export type StoreAvgOrderByAggregateInput = {
@@ -6732,7 +6836,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     Rating?: SortOrder
-    userId?: SortOrder
+    OwnerId?: SortOrder
   }
 
   export type StoreMinOrderByAggregateInput = {
@@ -6740,7 +6844,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     Rating?: SortOrder
-    userId?: SortOrder
+    OwnerId?: SortOrder
   }
 
   export type StoreSumOrderByAggregateInput = {
@@ -6805,10 +6909,11 @@ export namespace Prisma {
     Rating?: SortOrder
   }
 
-  export type StoreCreateNestedOneWithoutOwnerInput = {
-    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
-    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput
-    connect?: StoreWhereUniqueInput
+  export type StoreCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput> | StoreCreateWithoutOwnerInput[] | StoreUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput | StoreCreateOrConnectWithoutOwnerInput[]
+    createMany?: StoreCreateManyOwnerInputEnvelope
+    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
   }
 
   export type AddressCreateNestedOneWithoutUserInput = {
@@ -6817,16 +6922,18 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput
   }
 
-  export type RatingCreateNestedOneWithoutUserInput = {
-    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutUserInput
-    connect?: RatingWhereUniqueInput
+  export type RatingCreateNestedManyWithoutUserInput = {
+    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput> | RatingCreateWithoutUserInput[] | RatingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutUserInput | RatingCreateOrConnectWithoutUserInput[]
+    createMany?: RatingCreateManyUserInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
-  export type StoreUncheckedCreateNestedOneWithoutOwnerInput = {
-    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
-    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput
-    connect?: StoreWhereUniqueInput
+  export type StoreUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput> | StoreCreateWithoutOwnerInput[] | StoreUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput | StoreCreateOrConnectWithoutOwnerInput[]
+    createMany?: StoreCreateManyOwnerInputEnvelope
+    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
   }
 
   export type AddressUncheckedCreateNestedOneWithoutUserInput = {
@@ -6835,10 +6942,11 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput
   }
 
-  export type RatingUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutUserInput
-    connect?: RatingWhereUniqueInput
+  export type RatingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput> | RatingCreateWithoutUserInput[] | RatingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutUserInput | RatingCreateOrConnectWithoutUserInput[]
+    createMany?: RatingCreateManyUserInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6853,14 +6961,18 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type StoreUpdateOneWithoutOwnerNestedInput = {
-    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
-    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput
-    upsert?: StoreUpsertWithoutOwnerInput
-    disconnect?: StoreWhereInput | boolean
-    delete?: StoreWhereInput | boolean
-    connect?: StoreWhereUniqueInput
-    update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutOwnerInput, StoreUpdateWithoutOwnerInput>, StoreUncheckedUpdateWithoutOwnerInput>
+  export type StoreUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput> | StoreCreateWithoutOwnerInput[] | StoreUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput | StoreCreateOrConnectWithoutOwnerInput[]
+    upsert?: StoreUpsertWithWhereUniqueWithoutOwnerInput | StoreUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: StoreCreateManyOwnerInputEnvelope
+    set?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    disconnect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    delete?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    update?: StoreUpdateWithWhereUniqueWithoutOwnerInput | StoreUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: StoreUpdateManyWithWhereWithoutOwnerInput | StoreUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
   }
 
   export type AddressUpdateOneWithoutUserNestedInput = {
@@ -6873,24 +6985,32 @@ export namespace Prisma {
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutUserInput, AddressUpdateWithoutUserInput>, AddressUncheckedUpdateWithoutUserInput>
   }
 
-  export type RatingUpdateOneWithoutUserNestedInput = {
-    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutUserInput
-    upsert?: RatingUpsertWithoutUserInput
-    disconnect?: RatingWhereInput | boolean
-    delete?: RatingWhereInput | boolean
-    connect?: RatingWhereUniqueInput
-    update?: XOR<XOR<RatingUpdateToOneWithWhereWithoutUserInput, RatingUpdateWithoutUserInput>, RatingUncheckedUpdateWithoutUserInput>
+  export type RatingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput> | RatingCreateWithoutUserInput[] | RatingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutUserInput | RatingCreateOrConnectWithoutUserInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutUserInput | RatingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RatingCreateManyUserInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutUserInput | RatingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutUserInput | RatingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
   }
 
-  export type StoreUncheckedUpdateOneWithoutOwnerNestedInput = {
-    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
-    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput
-    upsert?: StoreUpsertWithoutOwnerInput
-    disconnect?: StoreWhereInput | boolean
-    delete?: StoreWhereInput | boolean
-    connect?: StoreWhereUniqueInput
-    update?: XOR<XOR<StoreUpdateToOneWithWhereWithoutOwnerInput, StoreUpdateWithoutOwnerInput>, StoreUncheckedUpdateWithoutOwnerInput>
+  export type StoreUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput> | StoreCreateWithoutOwnerInput[] | StoreUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: StoreCreateOrConnectWithoutOwnerInput | StoreCreateOrConnectWithoutOwnerInput[]
+    upsert?: StoreUpsertWithWhereUniqueWithoutOwnerInput | StoreUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: StoreCreateManyOwnerInputEnvelope
+    set?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    disconnect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    delete?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    connect?: StoreWhereUniqueInput | StoreWhereUniqueInput[]
+    update?: StoreUpdateWithWhereUniqueWithoutOwnerInput | StoreUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: StoreUpdateManyWithWhereWithoutOwnerInput | StoreUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: StoreScalarWhereInput | StoreScalarWhereInput[]
   }
 
   export type AddressUncheckedUpdateOneWithoutUserNestedInput = {
@@ -6903,14 +7023,18 @@ export namespace Prisma {
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutUserInput, AddressUpdateWithoutUserInput>, AddressUncheckedUpdateWithoutUserInput>
   }
 
-  export type RatingUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutUserInput
-    upsert?: RatingUpsertWithoutUserInput
-    disconnect?: RatingWhereInput | boolean
-    delete?: RatingWhereInput | boolean
-    connect?: RatingWhereUniqueInput
-    update?: XOR<XOR<RatingUpdateToOneWithWhereWithoutUserInput, RatingUpdateWithoutUserInput>, RatingUncheckedUpdateWithoutUserInput>
+  export type RatingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput> | RatingCreateWithoutUserInput[] | RatingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutUserInput | RatingCreateOrConnectWithoutUserInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutUserInput | RatingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RatingCreateManyUserInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutUserInput | RatingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutUserInput | RatingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAddressInput = {
@@ -6977,10 +7101,11 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput
   }
 
-  export type RatingCreateNestedOneWithoutStoreInput = {
-    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput
-    connect?: RatingWhereUniqueInput
+  export type RatingCreateNestedManyWithoutStoreInput = {
+    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput> | RatingCreateWithoutStoreInput[] | RatingUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput | RatingCreateOrConnectWithoutStoreInput[]
+    createMany?: RatingCreateManyStoreInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
   export type AddressUncheckedCreateNestedOneWithoutStoreInput = {
@@ -6989,10 +7114,11 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput
   }
 
-  export type RatingUncheckedCreateNestedOneWithoutStoreInput = {
-    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput
-    connect?: RatingWhereUniqueInput
+  export type RatingUncheckedCreateNestedManyWithoutStoreInput = {
+    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput> | RatingCreateWithoutStoreInput[] | RatingUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput | RatingCreateOrConnectWithoutStoreInput[]
+    createMany?: RatingCreateManyStoreInputEnvelope
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -7021,14 +7147,18 @@ export namespace Prisma {
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutStoreInput, AddressUpdateWithoutStoreInput>, AddressUncheckedUpdateWithoutStoreInput>
   }
 
-  export type RatingUpdateOneWithoutStoreNestedInput = {
-    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput
-    upsert?: RatingUpsertWithoutStoreInput
-    disconnect?: RatingWhereInput | boolean
-    delete?: RatingWhereInput | boolean
-    connect?: RatingWhereUniqueInput
-    update?: XOR<XOR<RatingUpdateToOneWithWhereWithoutStoreInput, RatingUpdateWithoutStoreInput>, RatingUncheckedUpdateWithoutStoreInput>
+  export type RatingUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput> | RatingCreateWithoutStoreInput[] | RatingUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput | RatingCreateOrConnectWithoutStoreInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutStoreInput | RatingUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: RatingCreateManyStoreInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutStoreInput | RatingUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutStoreInput | RatingUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
   }
 
   export type AddressUncheckedUpdateOneWithoutStoreNestedInput = {
@@ -7041,14 +7171,18 @@ export namespace Prisma {
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutStoreInput, AddressUpdateWithoutStoreInput>, AddressUncheckedUpdateWithoutStoreInput>
   }
 
-  export type RatingUncheckedUpdateOneWithoutStoreNestedInput = {
-    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput>
-    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput
-    upsert?: RatingUpsertWithoutStoreInput
-    disconnect?: RatingWhereInput | boolean
-    delete?: RatingWhereInput | boolean
-    connect?: RatingWhereUniqueInput
-    update?: XOR<XOR<RatingUpdateToOneWithWhereWithoutStoreInput, RatingUpdateWithoutStoreInput>, RatingUncheckedUpdateWithoutStoreInput>
+  export type RatingUncheckedUpdateManyWithoutStoreNestedInput = {
+    create?: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput> | RatingCreateWithoutStoreInput[] | RatingUncheckedCreateWithoutStoreInput[]
+    connectOrCreate?: RatingCreateOrConnectWithoutStoreInput | RatingCreateOrConnectWithoutStoreInput[]
+    upsert?: RatingUpsertWithWhereUniqueWithoutStoreInput | RatingUpsertWithWhereUniqueWithoutStoreInput[]
+    createMany?: RatingCreateManyStoreInputEnvelope
+    set?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    disconnect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    delete?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
+    update?: RatingUpdateWithWhereUniqueWithoutStoreInput | RatingUpdateWithWhereUniqueWithoutStoreInput[]
+    updateMany?: RatingUpdateManyWithWhereWithoutStoreInput | RatingUpdateManyWithWhereWithoutStoreInput[]
+    deleteMany?: RatingScalarWhereInput | RatingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutRatingInput = {
@@ -7278,23 +7412,28 @@ export namespace Prisma {
   export type StoreCreateWithoutOwnerInput = {
     name: string
     email: string
-    Rating: number
+    Rating?: number
     Address?: AddressCreateNestedOneWithoutStoreInput
-    allRating?: RatingCreateNestedOneWithoutStoreInput
+    allRating?: RatingCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUncheckedCreateWithoutOwnerInput = {
     id?: number
     name: string
     email: string
-    Rating: number
+    Rating?: number
     Address?: AddressUncheckedCreateNestedOneWithoutStoreInput
-    allRating?: RatingUncheckedCreateNestedOneWithoutStoreInput
+    allRating?: RatingUncheckedCreateNestedManyWithoutStoreInput
   }
 
   export type StoreCreateOrConnectWithoutOwnerInput = {
     where: StoreWhereUniqueInput
     create: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type StoreCreateManyOwnerInputEnvelope = {
+    data: StoreCreateManyOwnerInput | StoreCreateManyOwnerInput[]
+    skipDuplicates?: boolean
   }
 
   export type AddressCreateWithoutUserInput = {
@@ -7323,7 +7462,7 @@ export namespace Prisma {
 
   export type RatingCreateWithoutUserInput = {
     Rating: number
-    desc: string
+    desc?: string | null
     store: StoreCreateNestedOneWithoutAllRatingInput
   }
 
@@ -7331,7 +7470,7 @@ export namespace Prisma {
     id?: number
     storeId: number
     Rating: number
-    desc: string
+    desc?: string | null
   }
 
   export type RatingCreateOrConnectWithoutUserInput = {
@@ -7339,32 +7478,36 @@ export namespace Prisma {
     create: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput>
   }
 
-  export type StoreUpsertWithoutOwnerInput = {
-    update: XOR<StoreUpdateWithoutOwnerInput, StoreUncheckedUpdateWithoutOwnerInput>
-    create: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
-    where?: StoreWhereInput
+  export type RatingCreateManyUserInputEnvelope = {
+    data: RatingCreateManyUserInput | RatingCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
-  export type StoreUpdateToOneWithWhereWithoutOwnerInput = {
-    where?: StoreWhereInput
+  export type StoreUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: StoreWhereUniqueInput
+    update: XOR<StoreUpdateWithoutOwnerInput, StoreUncheckedUpdateWithoutOwnerInput>
+    create: XOR<StoreCreateWithoutOwnerInput, StoreUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type StoreUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: StoreWhereUniqueInput
     data: XOR<StoreUpdateWithoutOwnerInput, StoreUncheckedUpdateWithoutOwnerInput>
   }
 
-  export type StoreUpdateWithoutOwnerInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    Rating?: FloatFieldUpdateOperationsInput | number
-    Address?: AddressUpdateOneWithoutStoreNestedInput
-    allRating?: RatingUpdateOneWithoutStoreNestedInput
+  export type StoreUpdateManyWithWhereWithoutOwnerInput = {
+    where: StoreScalarWhereInput
+    data: XOR<StoreUpdateManyMutationInput, StoreUncheckedUpdateManyWithoutOwnerInput>
   }
 
-  export type StoreUncheckedUpdateWithoutOwnerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    Rating?: FloatFieldUpdateOperationsInput | number
-    Address?: AddressUncheckedUpdateOneWithoutStoreNestedInput
-    allRating?: RatingUncheckedUpdateOneWithoutStoreNestedInput
+  export type StoreScalarWhereInput = {
+    AND?: StoreScalarWhereInput | StoreScalarWhereInput[]
+    OR?: StoreScalarWhereInput[]
+    NOT?: StoreScalarWhereInput | StoreScalarWhereInput[]
+    id?: IntFilter<"Store"> | number
+    name?: StringFilter<"Store"> | string
+    email?: StringFilter<"Store"> | string
+    Rating?: FloatFilter<"Store"> | number
+    OwnerId?: StringFilter<"Store"> | string
   }
 
   export type AddressUpsertWithoutUserInput = {
@@ -7397,28 +7540,31 @@ export namespace Prisma {
     storeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type RatingUpsertWithoutUserInput = {
+  export type RatingUpsertWithWhereUniqueWithoutUserInput = {
+    where: RatingWhereUniqueInput
     update: XOR<RatingUpdateWithoutUserInput, RatingUncheckedUpdateWithoutUserInput>
     create: XOR<RatingCreateWithoutUserInput, RatingUncheckedCreateWithoutUserInput>
-    where?: RatingWhereInput
   }
 
-  export type RatingUpdateToOneWithWhereWithoutUserInput = {
-    where?: RatingWhereInput
+  export type RatingUpdateWithWhereUniqueWithoutUserInput = {
+    where: RatingWhereUniqueInput
     data: XOR<RatingUpdateWithoutUserInput, RatingUncheckedUpdateWithoutUserInput>
   }
 
-  export type RatingUpdateWithoutUserInput = {
-    Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
-    store?: StoreUpdateOneRequiredWithoutAllRatingNestedInput
+  export type RatingUpdateManyWithWhereWithoutUserInput = {
+    where: RatingScalarWhereInput
+    data: XOR<RatingUpdateManyMutationInput, RatingUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type RatingUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    storeId?: IntFieldUpdateOperationsInput | number
-    Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
+  export type RatingScalarWhereInput = {
+    AND?: RatingScalarWhereInput | RatingScalarWhereInput[]
+    OR?: RatingScalarWhereInput[]
+    NOT?: RatingScalarWhereInput | RatingScalarWhereInput[]
+    id?: IntFilter<"Rating"> | number
+    userId?: StringFilter<"Rating"> | string
+    storeId?: IntFilter<"Rating"> | number
+    Rating?: IntFilter<"Rating"> | number
+    desc?: StringNullableFilter<"Rating"> | string | null
   }
 
   export type UserCreateWithoutAddressInput = {
@@ -7429,8 +7575,8 @@ export namespace Prisma {
     role?: $Enums.Verdict | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    store?: StoreCreateNestedOneWithoutOwnerInput
-    rating?: RatingCreateNestedOneWithoutUserInput
+    store?: StoreCreateNestedManyWithoutOwnerInput
+    rating?: RatingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressInput = {
@@ -7441,8 +7587,8 @@ export namespace Prisma {
     role?: $Enums.Verdict | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    store?: StoreUncheckedCreateNestedOneWithoutOwnerInput
-    rating?: RatingUncheckedCreateNestedOneWithoutUserInput
+    store?: StoreUncheckedCreateNestedManyWithoutOwnerInput
+    rating?: RatingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressInput = {
@@ -7453,18 +7599,18 @@ export namespace Prisma {
   export type StoreCreateWithoutAddressInput = {
     name: string
     email: string
-    Rating: number
+    Rating?: number
     owner: UserCreateNestedOneWithoutStoreInput
-    allRating?: RatingCreateNestedOneWithoutStoreInput
+    allRating?: RatingCreateNestedManyWithoutStoreInput
   }
 
   export type StoreUncheckedCreateWithoutAddressInput = {
     id?: number
     name: string
     email: string
-    Rating: number
-    userId: string
-    allRating?: RatingUncheckedCreateNestedOneWithoutStoreInput
+    Rating?: number
+    OwnerId: string
+    allRating?: RatingUncheckedCreateNestedManyWithoutStoreInput
   }
 
   export type StoreCreateOrConnectWithoutAddressInput = {
@@ -7491,8 +7637,8 @@ export namespace Prisma {
     role?: NullableEnumVerdictFieldUpdateOperationsInput | $Enums.Verdict | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneWithoutOwnerNestedInput
-    rating?: RatingUpdateOneWithoutUserNestedInput
+    store?: StoreUpdateManyWithoutOwnerNestedInput
+    rating?: RatingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressInput = {
@@ -7503,8 +7649,8 @@ export namespace Prisma {
     role?: NullableEnumVerdictFieldUpdateOperationsInput | $Enums.Verdict | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUncheckedUpdateOneWithoutOwnerNestedInput
-    rating?: RatingUncheckedUpdateOneWithoutUserNestedInput
+    store?: StoreUncheckedUpdateManyWithoutOwnerNestedInput
+    rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type StoreUpsertWithoutAddressInput = {
@@ -7523,7 +7669,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     Rating?: FloatFieldUpdateOperationsInput | number
     owner?: UserUpdateOneRequiredWithoutStoreNestedInput
-    allRating?: RatingUpdateOneWithoutStoreNestedInput
+    allRating?: RatingUpdateManyWithoutStoreNestedInput
   }
 
   export type StoreUncheckedUpdateWithoutAddressInput = {
@@ -7531,8 +7677,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     Rating?: FloatFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
-    allRating?: RatingUncheckedUpdateOneWithoutStoreNestedInput
+    OwnerId?: StringFieldUpdateOperationsInput | string
+    allRating?: RatingUncheckedUpdateManyWithoutStoreNestedInput
   }
 
   export type UserCreateWithoutStoreInput = {
@@ -7544,7 +7690,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Address?: AddressCreateNestedOneWithoutUserInput
-    rating?: RatingCreateNestedOneWithoutUserInput
+    rating?: RatingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStoreInput = {
@@ -7556,7 +7702,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Address?: AddressUncheckedCreateNestedOneWithoutUserInput
-    rating?: RatingUncheckedCreateNestedOneWithoutUserInput
+    rating?: RatingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStoreInput = {
@@ -7590,7 +7736,7 @@ export namespace Prisma {
 
   export type RatingCreateWithoutStoreInput = {
     Rating: number
-    desc: string
+    desc?: string | null
     user: UserCreateNestedOneWithoutRatingInput
   }
 
@@ -7598,12 +7744,17 @@ export namespace Prisma {
     id?: number
     userId: string
     Rating: number
-    desc: string
+    desc?: string | null
   }
 
   export type RatingCreateOrConnectWithoutStoreInput = {
     where: RatingWhereUniqueInput
     create: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput>
+  }
+
+  export type RatingCreateManyStoreInputEnvelope = {
+    data: RatingCreateManyStoreInput | RatingCreateManyStoreInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutStoreInput = {
@@ -7626,7 +7777,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Address?: AddressUpdateOneWithoutUserNestedInput
-    rating?: RatingUpdateOneWithoutUserNestedInput
+    rating?: RatingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStoreInput = {
@@ -7638,7 +7789,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Address?: AddressUncheckedUpdateOneWithoutUserNestedInput
-    rating?: RatingUncheckedUpdateOneWithoutUserNestedInput
+    rating?: RatingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AddressUpsertWithoutStoreInput = {
@@ -7671,28 +7822,20 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RatingUpsertWithoutStoreInput = {
+  export type RatingUpsertWithWhereUniqueWithoutStoreInput = {
+    where: RatingWhereUniqueInput
     update: XOR<RatingUpdateWithoutStoreInput, RatingUncheckedUpdateWithoutStoreInput>
     create: XOR<RatingCreateWithoutStoreInput, RatingUncheckedCreateWithoutStoreInput>
-    where?: RatingWhereInput
   }
 
-  export type RatingUpdateToOneWithWhereWithoutStoreInput = {
-    where?: RatingWhereInput
+  export type RatingUpdateWithWhereUniqueWithoutStoreInput = {
+    where: RatingWhereUniqueInput
     data: XOR<RatingUpdateWithoutStoreInput, RatingUncheckedUpdateWithoutStoreInput>
   }
 
-  export type RatingUpdateWithoutStoreInput = {
-    Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutRatingNestedInput
-  }
-
-  export type RatingUncheckedUpdateWithoutStoreInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
-    Rating?: IntFieldUpdateOperationsInput | number
-    desc?: StringFieldUpdateOperationsInput | string
+  export type RatingUpdateManyWithWhereWithoutStoreInput = {
+    where: RatingScalarWhereInput
+    data: XOR<RatingUpdateManyMutationInput, RatingUncheckedUpdateManyWithoutStoreInput>
   }
 
   export type UserCreateWithoutRatingInput = {
@@ -7703,7 +7846,7 @@ export namespace Prisma {
     role?: $Enums.Verdict | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    store?: StoreCreateNestedOneWithoutOwnerInput
+    store?: StoreCreateNestedManyWithoutOwnerInput
     Address?: AddressCreateNestedOneWithoutUserInput
   }
 
@@ -7715,7 +7858,7 @@ export namespace Prisma {
     role?: $Enums.Verdict | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    store?: StoreUncheckedCreateNestedOneWithoutOwnerInput
+    store?: StoreUncheckedCreateNestedManyWithoutOwnerInput
     Address?: AddressUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -7727,7 +7870,7 @@ export namespace Prisma {
   export type StoreCreateWithoutAllRatingInput = {
     name: string
     email: string
-    Rating: number
+    Rating?: number
     owner: UserCreateNestedOneWithoutStoreInput
     Address?: AddressCreateNestedOneWithoutStoreInput
   }
@@ -7736,8 +7879,8 @@ export namespace Prisma {
     id?: number
     name: string
     email: string
-    Rating: number
-    userId: string
+    Rating?: number
+    OwnerId: string
     Address?: AddressUncheckedCreateNestedOneWithoutStoreInput
   }
 
@@ -7765,7 +7908,7 @@ export namespace Prisma {
     role?: NullableEnumVerdictFieldUpdateOperationsInput | $Enums.Verdict | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUpdateOneWithoutOwnerNestedInput
+    store?: StoreUpdateManyWithoutOwnerNestedInput
     Address?: AddressUpdateOneWithoutUserNestedInput
   }
 
@@ -7777,7 +7920,7 @@ export namespace Prisma {
     role?: NullableEnumVerdictFieldUpdateOperationsInput | $Enums.Verdict | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    store?: StoreUncheckedUpdateOneWithoutOwnerNestedInput
+    store?: StoreUncheckedUpdateManyWithoutOwnerNestedInput
     Address?: AddressUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -7805,8 +7948,93 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     Rating?: FloatFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
+    OwnerId?: StringFieldUpdateOperationsInput | string
     Address?: AddressUncheckedUpdateOneWithoutStoreNestedInput
+  }
+
+  export type StoreCreateManyOwnerInput = {
+    id?: number
+    name: string
+    email: string
+    Rating?: number
+  }
+
+  export type RatingCreateManyUserInput = {
+    id?: number
+    storeId: number
+    Rating: number
+    desc?: string | null
+  }
+
+  export type StoreUpdateWithoutOwnerInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    Rating?: FloatFieldUpdateOperationsInput | number
+    Address?: AddressUpdateOneWithoutStoreNestedInput
+    allRating?: RatingUpdateManyWithoutStoreNestedInput
+  }
+
+  export type StoreUncheckedUpdateWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    Rating?: FloatFieldUpdateOperationsInput | number
+    Address?: AddressUncheckedUpdateOneWithoutStoreNestedInput
+    allRating?: RatingUncheckedUpdateManyWithoutStoreNestedInput
+  }
+
+  export type StoreUncheckedUpdateManyWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    Rating?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type RatingUpdateWithoutUserInput = {
+    Rating?: IntFieldUpdateOperationsInput | number
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    store?: StoreUpdateOneRequiredWithoutAllRatingNestedInput
+  }
+
+  export type RatingUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    storeId?: IntFieldUpdateOperationsInput | number
+    Rating?: IntFieldUpdateOperationsInput | number
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RatingUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    storeId?: IntFieldUpdateOperationsInput | number
+    Rating?: IntFieldUpdateOperationsInput | number
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RatingCreateManyStoreInput = {
+    id?: number
+    userId: string
+    Rating: number
+    desc?: string | null
+  }
+
+  export type RatingUpdateWithoutStoreInput = {
+    Rating?: IntFieldUpdateOperationsInput | number
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutRatingNestedInput
+  }
+
+  export type RatingUncheckedUpdateWithoutStoreInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    Rating?: IntFieldUpdateOperationsInput | number
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RatingUncheckedUpdateManyWithoutStoreInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    Rating?: IntFieldUpdateOperationsInput | number
+    desc?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

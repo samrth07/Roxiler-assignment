@@ -146,7 +146,7 @@ exports.Prisma.StoreScalarFieldEnum = {
   name: 'name',
   email: 'email',
   Rating: 'Rating',
-  userId: 'userId'
+  OwnerId: 'OwnerId'
 };
 
 exports.Prisma.RatingScalarFieldEnum = {
