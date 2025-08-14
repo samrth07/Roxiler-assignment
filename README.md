@@ -61,5 +61,25 @@ The platform supports **System Administrators**, **Normal Users**, and **Store O
 
 ---
 
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/store-rating-platform.git
+cd store-rating-platform 
+```
+### 1️⃣ Install dependencies
+```bash
+cd backend
+npm install
+cd ../frontend
+npm install
+
+```
+
+
+
 
 
