@@ -63,5 +63,3 @@ The platform supports **System Administrators**, **Normal Users**, and **Store O
 
 
 
-## 📂 Project Structure
-
