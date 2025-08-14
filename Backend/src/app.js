@@ -9,13 +9,7 @@ const app = express()
 
 
 // 1) Enable CORS for your domains
-app.use(
-  cors({
-    origin: config.ALLOWED_ORIGINS.split(","), // e.g. 'https://club.example.com'
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    credentials: true,
-  }),
-);
+app.use(cors());
 
 // 2) body parser
 app.use(express.json());

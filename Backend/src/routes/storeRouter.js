@@ -16,7 +16,7 @@ storeRouter.post('/'  , validate( createStoreSchema ),  isAdministrator ,  creat
 
 storeRouter.get('/owner'  , isOwner , getStoreByOwenrId);
 
-storeRouter.get('/'  , isAdministrator , getAllstore);
+storeRouter.get('/'  , getAllstore);
 
 storeRouter.get('/:storeId'  , isAdministrator , getStoreById);
 

@@ -18,6 +18,14 @@ export const getuser = async (email) => {
     },
     include: {
       Address: true,
+      store : true,
+      rating : {
+        select:{
+          Rating : true,
+          desc : true,
+          store : true
+        }
+      }
     },
   });
 };
@@ -38,7 +46,13 @@ export const createAddress = async (city, streat, State, pincode, country , user
 
 export const getAlluser = async () =>{
 
-  return await prisma.user.findMany({});
+  return await prisma.user.findMany({
+    include : {
+      Address : true,
+      rating :true,
+      store :true
+    }
+  });
 }
 
 export const getUserById = async ( userId ) => {
@@ -46,13 +60,7 @@ export const getUserById = async ( userId ) => {
     where : {
       id : userId
     },
-    select : {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      createdAt: true,
-      updatedAt: true,
+    include : {
       Address: true,
       rating: true,
       store: true

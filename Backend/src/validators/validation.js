@@ -18,7 +18,7 @@ export const passwordSchema = z
   });
 
 export const CreateUserSchema = z.object({
-    name : z.string(20).max(60),
+    name : z.string().max(60),
     email : z.email(),
     password : passwordSchema,
     role   : z.string().optional(),

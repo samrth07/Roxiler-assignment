@@ -10,7 +10,7 @@ ratingRouter.use( authenticated )
 // user specific rating
 ratingRouter.post('/:storeId' ,   giveRating);
 
-ratingRouter.patch('/:storeId' ,   updateRating);
+ratingRouter.patch('/:ratingId' ,   updateRating);
 
 ratingRouter.get('/' ,  getRatingByUserId);
 

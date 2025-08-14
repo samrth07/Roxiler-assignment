@@ -26,6 +26,7 @@ export const signup = async(req, res) => {
 
     }
     catch(e) {
+        
         res.status(500).json ({
             message: "Error signin up!",
             error: e
@@ -59,6 +60,7 @@ export const signin = async (req , res) => {
                 user : user
             })
     } catch (error) {
+       
         res.status(500).json({
             msg : "internal server error"
         })
@@ -87,6 +89,7 @@ export const createAdmin = async ( req , res ) => {
         });
 
     } catch (error) {
+      
         res.status(500).json({
             error : "internal senver error"
         })
@@ -143,6 +146,7 @@ export const changePassword = async( req , res) => {
         res.status(200).json({msg : "Password update successfully"});
         
     } catch (error) {
+        
         res.status(500).json({ msg : "Internal server error"});
     }
 }

@@ -5,7 +5,8 @@ export const giveRating = async (req , res) => {
         const userId = req.id;
         const storeId = parseInt(req.params.storeId);
 
-        const { Rating , desc } = req.body;
+        const Rating = parseInt(req.body.Rating);
+        const desc = req.body.desc;
 
         if( !storeId || !userId) res.status(400).json({msg : "Somthing is missing"});
 
@@ -16,6 +17,7 @@ export const giveRating = async (req , res) => {
         })
         
     } catch (error) {
+       
         res.status(500).json({
             msg : "Internal server error"
         })
@@ -24,20 +26,22 @@ export const giveRating = async (req , res) => {
 
 export const updateRating = async ( req , res ) => {
          try {   
-        const userId = req.id;
-        const storeId = parseInt(req.params.storeId);
 
-        const data = req.body;
+        const ratingId = parseInt(req.params.ratingId);
 
-        if( !storeId || !userId) res.status(400).json({msg : "Somthing is missing"});
+        const Rating = parseInt(req.body.Rating);
+        const desc = req.body.desc
 
-        const rating  = await ratingServices.updateRating( userId , storeId , data );
+        if( !ratingId) res.status(400).json({msg : "Somthing is missing"});
+
+        const rating  = await ratingServices.updateRating( ratingId , Rating , desc);
 
         res.status(200).json({
             rating : rating
         })
         
     } catch (error) {
+       
         res.status(500).json({
             msg : "Internal server error"
         })
