@@ -1,0 +1,44 @@
+Folder Structure for Frontend
+├── node_modules/
+├── public/
+├── src/
+│ ├── Administrator/
+│ │ ├── AdministratorDashboard.jsx
+│ │ ├── AllRating.jsx
+│ │ ├── AllStores.jsx
+│ │ ├── AllUser.jsx
+│ │ ├── CreateStore.jsx
+│ │ ├── CreateUser.jsx
+│ ├── assets/
+│ ├── component/
+│ │ ├── ui/
+│ │ │ └── Navbar.jsx
+│ ├── context/
+│ │ ├── Authcontext.jsx
+│ │ └── AuthRoute.jsx
+│ ├── Dashboard.jsx
+│ │ ├── DashboardLayout.jsx
+│ │ ├── Profilepage.jsx
+│ │ └── SidebarMenu.jsx
+│ ├── Owner/
+│ │ ├── Ownerdashboard.jsx
+│ │ └── Stores.jsx
+│ ├── pages/
+│ │ ├── FindStore.jsx
+│ │ ├── Home.jsx
+│ │ ├── LandingPages.jsx
+│ │ ├── SignIn.jsx
+│ │ └── SignUp.jsx
+│ ├── routes/
+│ │ ├── Approuter.jsx
+│ │ └── routes.jsx
+│ ├── user/
+│ │ ├── RatingSubmit.jsx
+│ │ └── Usersdashboard.jsx
+│ ├── App.css
+│ ├── App.jsx
+│ ├── index.css
+│ ├── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
