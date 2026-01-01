@@ -15,6 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 // 3) Routes
+app.get("/health" , (req , res) => {
+  res.status(200).json({ msg : "OK"});
+})
 app.use("/api/v1", router);
 
 // 4) 404 handler
